@@ -62,7 +62,7 @@ function mainMenu() {
                         },
                         {
                             type: 'input',
-                            message: 'what department will this role belong to',
+                            message: 'what department id will this role belong to',
                             name: 'roleDepartment'
                         }]).then((answer) => {
                             db.query("INSERT INTO role SET ?", {
@@ -93,15 +93,29 @@ function mainMenu() {
                         },
                         {
                             type: 'input',
-                            message: "what is the employee's role",
+                            message: "what is the employee's role id",
                             name: 'employeeRole'
                         },
                         {
                             type: 'input',
-                            message: "who is the employee's manager",
+                            message: "what is the employee's manager id",
                             name: 'employeeManager'
                         }
-                    ])
+                    ]).then((answer) => {
+                        db.query("INSERT INTO employee SET ?", {
+                            first_name: answer.employeeFirstName,
+                            last_name: answer.employeeLastName,
+                            role_id: answer.employeeRole,
+                            manager_id: answer.employeeManager
+                        }, (err, results) => {
+                            if(err) {
+                                console.log("there was an error adding employee", err); 
+                            } else {
+                                console.log("success adding employee");
+                            }
+                            mainMenu();
+                        });
+                    });
             } else if (answer.intention === 'update an employee role') {
                 inquirer
                     .prompt([
