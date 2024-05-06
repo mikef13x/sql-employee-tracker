@@ -143,14 +143,23 @@ function mainMenu() {
                             mainMenu();
                         });
                     });
-            } else if(answer.intention === 'view all departments') {
-                db.query('select * from department', (err, result)=> {
-                    if(err) {
+            } else if (answer.intention === 'view all departments') {
+                db.query('select * from department', (err, result) => {
+                    if (err) {
                         console.log('error getting department', err)
+                    } else {
+                        console.table(result)
+                    }
+                })
+            } else if (answer.intention === 'view all roles') {
+                db.query('select * from role', (err, result) => {
+                    if (err) {
+                        console.log('error getting role', err)
                     } else {
                         console.table(result)
                     }
                 })
             }
         })
+
 };
