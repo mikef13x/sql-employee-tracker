@@ -159,6 +159,14 @@ function mainMenu() {
                         console.table(result)
                     }
                 })
+            } else if(answer.intention === 'view all employees') {
+                db.query('select * from employee', (err, result)=> {
+                    if(err) {
+                        console.log('error getting employees', err)
+                    } else {
+                        console.table(result)
+                    }
+                })
             }
         })
 
