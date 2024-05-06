@@ -64,8 +64,20 @@ function mainMenu() {
                             type: 'input',
                             message: 'what department will this role belong to',
                             name: 'roleDepartment'
-                        }
-                    ])
+                        }]).then((answer) => {
+                            db.query("INSERT INTO role SET ?", {
+                                title: answer.roleName,
+                                salary: answer.roleSalary,
+                                department_id: answer.roleDepartment
+                            }, (err, results) => {
+                                if(err) {
+                                    console.log("there was an error adding role", err); 
+                                } else {
+                                    console.log("success adding role");
+                                }
+                                mainMenu();
+                            });
+                      })
             } else if (answer.intention === 'add an employee') {
                 inquirer
                     .prompt([
