@@ -143,6 +143,14 @@ function mainMenu() {
                             mainMenu();
                         });
                     });
+            } else if(answer.intention === 'view all departments') {
+                db.query('select * from department', (err, result)=> {
+                    if(err) {
+                        console.log('error getting department', err)
+                    } else {
+                        console.table(result)
+                    }
+                })
             }
         })
 };
