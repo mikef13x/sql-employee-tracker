@@ -1,12 +1,12 @@
 USE employee_db;
 
-INSERT INTO department (name)
+INSERT INTO department (department_name)
 VALUES ("Management");
-INSERT INTO department (name)
-VALUES ("Engineering")
-INSERT INTO department (name)
-VALUES ("Science")
-INSERT INTO department (name)
+INSERT INTO department (department_name)
+VALUES ("Engineering");
+INSERT INTO department (department_name)
+VALUES ("Science");
+INSERT INTO department (department_name)
 VALUES ("Mathematics");
 
 Insert INTO role (title, salary, department_id)
@@ -22,8 +22,10 @@ VALUES ("Mathematics Professor", 145000, 4);
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("Jack", "Johnson", 1);
 INSERT INTO employee (first_name, last_name, role_id)
-VALUES ("Mike", "Johns", 2);
+VALUES ("Mike", "Michaelson", 2);
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("Yuki", "Adams", 3);
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES ("Kiba", "Smith", 4);
+
+update employee set manager_id = 1 where id in (3,4);
